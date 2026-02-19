@@ -3,14 +3,12 @@
 	"symbol": "BTVN",
 	"description": "Just-for-fun experimental token. No value, no utility, no roadmap. Do not buy or trade.",
 	"image": "https://raw.githubusercontent.com/billbak/btvn/main/icon.png",
-	"attributes": [
-		{
-			"trait_type": "Purpose",
-			"value": "Joke / Experiment"
-		},
-		{
-			"trait_type": "Supply",
-			"value": "Fixed (1000)"
-		}
-	]
+	"properties": {
+		"files": [
+			{
+				"uri": "https://raw.githubusercontent.com/billbak/btvn/main/icon.png",
+				"type": "image/png"
+			}
+		]
+	}
 }
