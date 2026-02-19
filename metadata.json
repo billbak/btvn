@@ -2,7 +2,7 @@
 	"name": "BitVern",
 	"symbol": "BTVN",
 	"description": "Just-for-fun experimental token. No value, no utility, no roadmap. Do not buy or trade.",
-	"image": "icon.png",
+	"image": "https://raw.githubusercontent.com/billbak/btvn/main/icon.png",
 	"attributes": [
 		{
 			"trait_type": "Purpose",
