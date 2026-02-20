@@ -2,11 +2,11 @@
 	"name": "BillBak",
 	"symbol": "BLLBK",
 	"description": "Just-for-fun experimental token. No value, no utility, no roadmap. Do not buy or trade.",
-	"image": "https://raw.githubusercontent.com/billbak/bllbk/main/icon.png",
+	"image": "https://raw.githubusercontent.com/billbak/btvn/main/bllbk/icon.png",
 	"properties": {
 		"files": [
 			{
-				"uri": "https://raw.githubusercontent.com/billbak/bllbk/main/icon.png",
+				"uri": "https://raw.githubusercontent.com/billbak/btvn/main/bllbk/icon.png",
 				"type": "image/png"
 			}
 		]
