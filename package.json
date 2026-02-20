@@ -1,0 +1,21 @@
+{
+	"dependencies": {
+		"@metaplex-foundation/cli": "^0.0.10",
+		"@metaplex-foundation/mpl-token-metadata": "^3.4.0",
+		"@metaplex-foundation/mpl-toolbox": "^0.10.0",
+		"@metaplex-foundation/umi": "^1.5.1",
+		"@metaplex-foundation/umi-bundle-defaults": "^1.5.1",
+		"@solana/web3.js": "^1.98.4"
+	},
+	"name": "memecoin",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Set the metadata of a Solana token using the Metaplex Token Metadata standard.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
