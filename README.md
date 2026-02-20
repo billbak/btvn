@@ -1,14 +1,23 @@
 # meme coin
 
-This is the process I used to create a meme coin on Solana. I used the command line and some JavaScript code to set the metadata. I did not use Metaplex because I could not get it to run on my M2 Mac.
+This is the process I used to create a meme coin on Solana. I used the command line and some JavaScript code to set the metadata. I used the Metaplex UMI SDK (not the Metaplex CLI/Sugar, which I could not get to run on my M2 Mac).
 
-The coins I have made are for fun only. They have no value and no one can mine any additional coins. I have not set up any liquiduity pools.
+The coins I have made are for fun only. They have no value and no one can mine any additional coins. I have not set up any liquidity pools.
 
 ## Resources
 
 - [Solana CLI documentation](https://docs.solana.com/cli)
 - [SPL Token CLI documentation](https://spl.solana.com/token)
-  -Claude Code (of course)
+- Claude Code (of course)
+
+### Node.js
+
+Node.js is required to run the metadata script. Install it with Homebrew:
+
+```bash
+brew install node
+node --version
+```
 
 ### Solana command line interface (CLI)
 
@@ -128,10 +137,63 @@ This command mints 1000 tokens of the specified mint to the specified recipient 
 ### Check the balance
 
 ```bash
-spl-token balance <RECIPIENT_ID>
+spl-token balance <TOKEN_ID>
 1000
 ```
 
 This command checks the balance of the specified token account. It should return 1000, which is the amount of tokens that were minted to that account. You can also check the balance with a wallet that supports Solana, such as Phantom or Solflare, by adding the token to the wallet with the mint address.
 
 ### Set the metadata
+
+This step is a bit more complicated because it requires some JavaScript code to interact with the Metaplex Token Metadata program. We have a Node program called `create-metadata.mjs` that does this. First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then run the script:
+
+```bash
+node create-metadata.mjs --mint <TOKEN_ID> --name <NAME> --symbol <SYMBOL> --metadata <METADATA_PATH>
+```
+
+Be sure to have a metadata JSON file that follows the Metaplex standard. The `--metadata` flag should point to the local path of the JSON file. The script will infer the raw GitHub URL based on the file's location in the git repository. The metadata JSON file should include the name, symbol, description, image URL, and properties of the token. The image URL should point to a 512x512 PNG file that represents the token's icon.
+
+See any of the metadata.json files in this repo for an example. You can also use the `--uri` flag to specify the metadata URI directly, but using `--metadata` is more convenient because it automatically infers the URI from the file path and git remote.
+
+The script will write the metadata on-chain for the specified mint address. After running the script, you should be able to see the token's name, symbol, and image in wallets that support Solana tokens, such as Phantom or Solflare. You will see a link to the Solana Explorer page for the token, where you can verify that the metadata was set correctly.
+
+At this point, the token is fully functional and can be transferred, traded, or used in any way that other Solana tokens can be. Only the account that owns the mint can transfer tokens to other wallets.
+
+### Lock it down (forever) [Do this last, after setting metadata]
+
+```bash
+spl-token authorize <TOKEN_ID> mint --disable
+
+Updating <TOKEN_ID>
+Current mint: <MINT_ADDRESS>
+New mint: disabled
+
+Signature: 34ypF...Nsxoe
+```
+
+### Verify on chain
+
+```bash
+spl-token account-info <TOKEN_ID>
+
+SPL Token Account
+Address: <ACCOUNT_ADDRESS>
+Program: <PROGRAM_ADDRESS>
+Balance: 1000
+Decimals: 0
+Mint: <MINT_ADDRESS>
+Owner: <OWNER_ADDRESS>
+State: Initialized
+Delegation: (not set)
+Close authority: (not set)
+```
+
+---
+
+You are done! You have created a new meme coin on Solana with custom metadata. You can share the mint address and the metadata URI with others so they can view the token in their wallets or trade it on decentralized exchanges that support Solana tokens.
